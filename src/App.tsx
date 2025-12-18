@@ -3,19 +3,33 @@ import { useState, useEffect } from 'react';
 import CardList from './components/card-list/card-list.component';
 import SearchBox from './components/search-box/search-box.component';
 
+import { getData } from './utils/data.utils';
+
 import './App.css';
+
+type Monster = {
+  id: string;
+  name: string;
+  email: string;
+};
 
 const App = () => {
   const [monsters, setMonsters] = useState([]);
   const [filteredMonsters, setFilteredMonsters] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((data) => {
-        setMonsters(data);
-        setFilteredMonsters(data);
-      });
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setMonsters(data);
+    //     setFilteredMonsters(data);
+    //   });
+
+    const fetchUsers = async () => {
+      const users = await getData<Monster[]>('https://jsonplaceholder.typicode.com/users');
+      setMonsters(users);
+      setFilteredMonsters(users);
+    }
   }, []);
 
   const onSearchChange = (event) => {
