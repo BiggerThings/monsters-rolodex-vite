@@ -1,6 +1,12 @@
 import './card.styles.css';
 
-const Card = ({ name, email, id }) => {
+type Monster = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+const Card = ({ name, email, id } : Monster) => {
   return (
     <div className='card-container'>
       <img src={`https://robohash.org/${id}?set=set2`} />
