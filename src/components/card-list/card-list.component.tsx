@@ -1,12 +1,7 @@
 import Card from '../card/card.component';
+import { Monster } from '../../App';
 
 import './card-list.styles.css';
-
-type Monster = {
-  id: string;
-  name: string;
-  email: string;
-};
 
 type CardListProps = {
   monsters: Monster[];
@@ -15,9 +10,9 @@ type CardListProps = {
 const CardList = ({ monsters }: CardListProps) => {
   return (
     <div className='card-list-container'>
-      {monsters.map(({ name, email, id }, idx) => {
+      {monsters.map((monster, idx) => {
         return (
-          <Card key={`${name}-${idx}`} name={name} email={email} id={id}></Card>
+          <Card key={`${monster.name}-${idx}`} monster={monster}></Card>
         );
       })}
     </div>
